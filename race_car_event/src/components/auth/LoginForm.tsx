@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import accountService from '../../_services/account.service';
+import { UserContext } from '../../contexts/userContext';
 
 
 function LoginForm() {
+  const {isLogged, setIsLogged} = useContext(UserContext);
 
   let navigate = useNavigate()
 
@@ -26,6 +28,7 @@ function LoginForm() {
       .then(
         res => {
           accountService.saveToken(res.data.data.token);
+          setIsLogged(true);
           navigate('/');
         }
       )
