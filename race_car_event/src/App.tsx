@@ -8,14 +8,12 @@ import UserProvider from './contexts/userContext'
 function App () {
 
   return(
-  <UserProvider>
       <div className="App bg-gradient-to-tr from-rose-800 via-purple-700 to-violet-700">
-          <Navbar />
-          <RouterProvider router={router} />
+        <UserProvider>
+            <RouterProvider router={router} />
+        </UserProvider>
       </div>
-  </UserProvider>
   )
-  }
-
+}
 
 export default App

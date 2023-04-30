@@ -1,16 +1,17 @@
 import { useContext } from 'react';
-import { UserContext } from '../contexts/userContext';
+import { UserContext }  from '../contexts/userContext';
 import { Link } from 'react-router-dom';
 
   
 const Navbar = () => {
-    const isLogged = useContext(UserContext);
-
+    const user = useContext(UserContext);
+    const isLogged = user.user.username !== "";
+    console.log(isLogged);
     if (isLogged) {
         return (
             <div className="navbar bg-base-100">
                 <div className="flex-1">
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <Link to="/login" className="btn btn-ghost normal-case text-xl">Race Event</Link>
                 </div>
                 <div className="flex-none">
                 
@@ -35,20 +36,21 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        )
-    } else {
-        return (
-            <div className="navbar bg-base-100">
-                <div className="flex-1">
-                    <Link to="/login" className="btn btn-ghost normal-case text-xl">Race Event</Link>
-                </div>
-                <div className="flex-none">
-                    <Link to="/login" className="btn btn-ghost">Login</Link>
-                    <Link to="/" className="btn btn-primary">Sign up</Link>
-                </div>
+        );
+    } 
+
+    return (
+        <div className="navbar bg-base-100">
+            <div className="flex-1">
+                <Link to="/login" className="btn btn-ghost normal-case text-xl">Race Event</Link>
             </div>
-        )
-    }
+            <div className="flex-none">
+                <Link to="/login" className="btn btn-ghost">Login</Link>
+                <Link to="/" className="btn btn-primary">Sign up</Link>
+            </div>
+        </div>
+    )
+    
 };
   
 export default Navbar;

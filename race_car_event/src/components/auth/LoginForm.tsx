@@ -5,7 +5,7 @@ import { UserContext } from '../../contexts/userContext';
 
 
 function LoginForm() {
-  const {isLogged, setIsLogged} = useContext(UserContext);
+  const {setUser} = useContext(UserContext);
 
   let navigate = useNavigate()
 
@@ -27,8 +27,12 @@ function LoginForm() {
     accountService.login(credentials)
       .then(
         res => {
-          accountService.saveToken(res.data.data.token);
-          setIsLogged(true);
+          console.log(res.data);
+          accountService.saveToken(res.data.data);
+          setUser({
+            username: res.data.data.username,
+            email: res.data.data.email,
+          });
           navigate('/');
         }
       )

@@ -1,29 +1,34 @@
-import{useState,createContext, Dispatch, ReactNode} from "react";
+import{useState,createContext, Dispatch, ReactNode, SetStateAction} from "react";
+import { User } from "../components/Types/user";
 
 type UserProviderType = {
     children: ReactNode;
 };
 
 export interface UserContextInterface {
-    isLogged: boolean;
-    setIsLogged: Dispatch<boolean>;
+    user: User
+    setUser: Dispatch<SetStateAction<User>>;
 };
 
-const defaultUserContext: UserContextInterface = {
-    isLogged: false,
-    setIsLogged: (value:boolean) => {}
+const defaultUserContext = {
+    user : {
+        username : "",
+        email : "",
+    },
+    setUser: (user : User) => {}
 } as UserContextInterface;
 
 export const UserContext = createContext(defaultUserContext);
 
-function UserProvider({ children} : UserProviderType){
-    const[isLogged, setIsLogged] = useState(false);
+export default function UserProvider({ children} : UserProviderType){
+    const[user, setUser] = useState<User>({
+        username : "",
+        email : "",
+    });
 
     return(
-        <UserContext.Provider value={{isLogged, setIsLogged}}>
+        <UserContext.Provider value={{user, setUser}}>
             {children}
         </UserContext.Provider>
     );
 };
-
-export default UserProvider;
