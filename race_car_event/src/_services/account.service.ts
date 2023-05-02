@@ -4,6 +4,10 @@ let login = (credentials: object) => {
     return Axios.post('/api/auth/login/', credentials)
 };
 
+let register = (credentials: object) => {
+    return Axios.post('/api/auth/register/', credentials)
+};
+
 let saveToken = (token: string ) => {
     if (token) {
         window.localStorage['jwtToken'] = token;
@@ -37,6 +41,7 @@ let isLoggedIn = () => {
 
 export default {
     login,
+    register,
     saveToken,
     logout,
     getToken,

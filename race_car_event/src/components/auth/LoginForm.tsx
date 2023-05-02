@@ -6,6 +6,7 @@ import { UserContext } from '../../contexts/userContext';
 
 function LoginForm() {
   const {setUser} = useContext(UserContext);
+  const [error, setError] = React.useState("");
 
   let navigate = useNavigate()
 
@@ -36,7 +37,9 @@ function LoginForm() {
           navigate('/');
         }
       )
-      .catch(err => console.log(err))
+      .catch(err => 
+        setError(err.response.data.message[0].error) // bizzarement, le message d'erreur est dans un tableau
+      )
   };
 
   return (
@@ -47,16 +50,26 @@ function LoginForm() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Se Connecter
             </h1>
+
+            { error !== "" &&
+            <div className="alert alert-error shadow-lg">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span> { error }</span>
+                </div>
+            </div>
+            }
+
             <div className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email </label>
                 <input type="text" name="email"  value={credentials.email} onChange={onChange}/>
             </div>
             <div className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                <label htmlFor="password">Mot de passe</label>
+                <label htmlFor="password">Mot de passe </label>
                 <input type="text" name="password" value={credentials.password} onChange={onChange}/>
             </div>
-            <div className="grblock mb-2 text-sm font-medium text-gray-900 dark:text-whiteoup">
-                <button>Connexion</button>
+            <div className="grblock mb-2 text-sm font-medium text-gray-900 dark:text-whiteoup ">
+                <button className="btn btn-primary">Connexion</button>
             </div>
           </div>
         </div>

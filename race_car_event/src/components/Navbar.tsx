@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     const user = useContext(UserContext);
     const isLogged = user.user.username !== "";
-    console.log(isLogged);
     if (isLogged) {
         return (
             <div className="navbar bg-base-100">
@@ -25,11 +24,10 @@ const Navbar = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
                         <a className="justify-between">
-                            Profile
-                            <span className="badge">New</span>
+                            Bonjour {user.user.username}
                         </a>
                         </li>
-                        <li><a>Settings</a></li>
+                        <li><a>Profile</a></li>
                         <li><a>Logout</a></li>
                     </ul>
                     
@@ -46,7 +44,7 @@ const Navbar = () => {
             </div>
             <div className="flex-none">
                 <Link to="/login" className="btn btn-ghost">Login</Link>
-                <Link to="/" className="btn btn-primary">Sign up</Link>
+                <Link to="/register" className="btn btn-primary">Sign up</Link>
             </div>
         </div>
     )
