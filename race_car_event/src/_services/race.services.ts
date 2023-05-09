@@ -8,7 +8,7 @@ let getRace = (id: number) => {
     return Axios.get("/api/races/" + id + "/");
 };
 
-let createRace =(credentials : object) => {
+let createRace = (credentials : object) => {
     return Axios.post("/api/races/create", credentials);
 };
 

@@ -1,19 +1,28 @@
-import Navbar from './components/Navbar'
-import './App.css'
-import { RouterProvider } from 'react-router-dom'
-import router from './config/router'
-import UserProvider from './contexts/userContext'
+import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./config/router";
+import UserProvider from "./contexts/userContext";
+import RacesProvider, { RacesContext } from "./contexts/racesContext";
+import { useContext, useEffect } from "react";
+import useRaces from "./hooks/useRaces";
 
+function App() {
+  const [state, dispatch] = useContext(RacesContext);
+  const { getRaces } = useRaces();
 
-function App () {
+  useEffect(() => {
+    getRaces();
+  }, []);
 
-  return(
-      <div className="App bg-gradient-to-tr from-rose-800 via-purple-700 to-violet-700">
-        <UserProvider>
-            <RouterProvider router={router} />
-        </UserProvider>
-      </div>
-  )
+  return (
+    <div className="App h-full bg-gradient-to-tr from-rose-800 via-purple-700 to-violet-700">
+      <UserProvider>
+        <RacesProvider>
+          <RouterProvider router={router} />
+        </RacesProvider>
+      </UserProvider>
+    </div>
+  );
 }
 
-export default App
+export default App;

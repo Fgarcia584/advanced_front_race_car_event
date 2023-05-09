@@ -40,7 +40,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
-                <Link to="/login" className="btn btn-ghost normal-case text-xl">Race Event</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl">Race Event</Link>
             </div>
             <div className="flex-none">
                 <Link to="/login" className="btn btn-ghost">Login</Link>
