@@ -1,15 +1,23 @@
+import { useContext, useReducer } from "react";
+import { raceReducer, initialRaceState } from "../../contexts/racesReducer";
 import { races } from "../../mock/races"
 import { Race } from "../Types/race";
 import RaceCard from "./RaceCard";
+import { RacesContext } from "../../contexts/racesContext";
+import useRaces from "../../hooks/useRaces";
 
 const RacesList: React.FC = () => {
-    const races_list: Race[] = races;
+    useRaces();
+    const [state] = useContext(RacesContext)
+    const races_list: Race[] = state.races;
+
+    if(state.loading) return (<div>Loading...</div>)
 
     return (
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 place-items-center">
+        <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10 place-items-center">
             {races_list.map((race) => (
                 <RaceCard key={race.id} race={race} />
-                ))}
+            ))}
         </div>
     )
 }

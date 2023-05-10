@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import useRaces from "../hooks/useRaces";
 
 function Home() {
+    useRaces();
+
     return (
         <section className="h-screen overflow-scroll snap-proximty snap-y bg-gradient-to-tr from-rose-800 via-purple-700 to-violet-700">
             <div className="h-screen  snap-always snap-start shrink-0 hero min-h-screen">

@@ -1,7 +1,7 @@
 import Axios from './caller.service';
 
-let getRaces = () => {
-    return Axios.get("/api/races/");
+let getRaces = async () => {
+    return await Axios.get("/api/races/");
 };
 
 let getRace = (id: number) => {

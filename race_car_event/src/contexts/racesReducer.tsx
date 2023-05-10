@@ -5,35 +5,37 @@ export enum RaceActionType {
     SET_RACES = "SET_RACES",
     ADD_RACE = "ADD_RACE",
     EDIT_RACE = "EDIT_RACE",
-    REGISTER_TO_RACE = "REGISTER_TO_RACE"
+    REGISTER_TO_RACE = "REGISTER_TO_RACE",
+    SET_LOADING = "SET_LOADING",
 
 }
 export interface RaceState {
     races: Race[];
+    loading?: boolean;
 }
-  
+
 export const initialRaceState: RaceState = {
-    races: []
+    races: [],
+    loading:  true
 };
 
 export const raceReducer = (state: RaceState, action: Action<RaceActionType>) => {
-    console.log(action);
     switch (action.type) {
         case RaceActionType.SET_RACES:
-            console.log(action.payload);
             return {
                 ...state,
                 races: action.payload,
+                loading: false
             };
         case RaceActionType.ADD_RACE:
             return {
                 ...state,
-                races : [action.payload, ...state.races],
+                races: [action.payload, ...state.races],
             };
         case RaceActionType.EDIT_RACE:
             return {
                 ...state,
-                races : [
+                races: [
                     action.payload,
                     ...state.races.filter((n) => n.id !== action.payload.id),
                 ]
@@ -42,8 +44,13 @@ export const raceReducer = (state: RaceState, action: Action<RaceActionType>) =>
             return {
                 ...state,
             };
+        case RaceActionType.SET_LOADING:
+            return {
+                ...state,
+                loading: action.payload,
+            };
         default:
-            return state;
+            throw new Error(`Unsupported action type: ${action}`)
     }
 };
 
