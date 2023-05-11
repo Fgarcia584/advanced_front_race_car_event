@@ -28,7 +28,6 @@ function LoginForm() {
     accountService.login(credentials)
       .then(
         res => {
-          console.log(res.data);
           accountService.saveToken(res.data.data);
           setUser({
             username: res.data.data.username,
@@ -38,7 +37,7 @@ function LoginForm() {
         }
       )
       .catch(err => 
-        setError(err.response.data.message[0].error) // bizzarement, le message d'erreur est dans un tableau
+        setError(err.response.data.message[0].error) 
       )
   };
 

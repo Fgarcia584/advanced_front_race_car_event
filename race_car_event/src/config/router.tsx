@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import ListRaces from "../pages/Races/ListRaces";
+import MapRaces from "../pages/Races/MapRaces";
 
 export const Router = createBrowserRouter([
         {
@@ -20,6 +21,10 @@ export const Router = createBrowserRouter([
                         {
                             path: "/races",
                             element: <ListRaces />,
+                        },
+                        {
+                            path: "/races/map",
+                            element: <MapRaces />,
                         },
                     ],
                 }
