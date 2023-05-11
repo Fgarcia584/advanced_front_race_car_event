@@ -3,7 +3,7 @@ import { raceReducer, initialRaceState } from "../../contexts/racesReducer";
 import { races } from "../../mock/races";
 import { Race } from "../../types/race";
 import RaceCard from "./RaceCard";
-import { RacesContext } from "../../contexts/racesContext";
+import { RacesContext } from "../../contexts/races/racesContext";
 import useRaces from "../../hooks/useRaces";
 
 const RacesList: React.FC = () => {

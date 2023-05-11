@@ -5,7 +5,7 @@ import {
   initialRaceState,
   raceReducer,
 } from "./racesReducer";
-import { Action } from "../types/action";
+import { Action } from "../../types/action";
 
 export const RacesContext = createContext<
   [RaceState, Dispatch<Action<RaceActionType>>]

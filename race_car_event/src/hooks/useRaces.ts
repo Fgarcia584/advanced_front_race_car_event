@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 import raceServices from "../_services/race.services";
-import { RacesContext } from "../contexts/racesContext";
-import { RaceActionType } from "../contexts/racesReducer";
+import { RacesContext } from "../contexts/races/racesContext";
 import { Race } from "../types/race";
+import { RaceActionType } from "../contexts/races/racesReducer";
 
 const useRaces = () => {
   const [state, dispatch] = useContext(RacesContext);
