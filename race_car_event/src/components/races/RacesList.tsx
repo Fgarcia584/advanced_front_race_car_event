@@ -1,6 +1,4 @@
 import { useContext, useReducer } from "react";
-import { raceReducer, initialRaceState } from "../../contexts/racesReducer";
-import { races } from "../../mock/races";
 import { Race } from "../../types/race";
 import RaceCard from "./RaceCard";
 import { RacesContext } from "../../contexts/races/racesContext";
@@ -15,6 +13,7 @@ const RacesList: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10 place-items-center">
+      
       {races_list.map((race) => (
         <RaceCard key={race.id} race={race} />
       ))}

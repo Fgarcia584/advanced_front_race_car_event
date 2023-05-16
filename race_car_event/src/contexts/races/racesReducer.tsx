@@ -1,11 +1,12 @@
-import { Action } from "../types/action";
-import { Race } from "../types/race";
+import { Action } from "../../types/action";
+import { Race } from "../../types/race";
 
 export enum RaceActionType {
   SET_RACES = "SET_RACES",
   ADD_RACE = "ADD_RACE",
   EDIT_RACE = "EDIT_RACE",
   REGISTER_TO_RACE = "REGISTER_TO_RACE",
+  UNREGISTER_TO_RACE = "UNREGISTER_TO_RACE",
   SET_LOADING = "SET_LOADING",
 }
 export interface RaceState {
@@ -45,6 +46,18 @@ export const raceReducer = (
     case RaceActionType.REGISTER_TO_RACE:
       return {
         ...state,
+        races: [
+          action.payload,
+          ...state.races.filter((n) => n.id !== action.payload.id),
+        ],
+      };
+    case RaceActionType.UNREGISTER_TO_RACE:
+      return {
+        ...state,
+        races: [
+          action.payload,
+          ...state.races.filter((n) => n.id !== action.payload.id),
+        ],
       };
     case RaceActionType.SET_LOADING:
       return {

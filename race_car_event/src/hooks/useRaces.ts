@@ -32,8 +32,48 @@ const useRaces = () => {
       );
   };
 
+
+  const addRace = async ( credentials : Race) => { 
+    await raceServices
+      .createRace(credentials)
+      .then((res) => {
+        console.log(res.data.data)
+        dispatch({
+          type : RaceActionType.ADD_RACE,
+          payload : res.data.data
+        })
+      })
+      .catch((e) => console.error(e))
+      .finally(() => {
+        dispatch({
+          type: RaceActionType.SET_LOADING,
+          payload: false,
+        })
+      }
+      );
+  };
+
+  const registerRace = async (raceId: string, userId: string) => {
+    await raceServices
+    .registerRace(raceId, userId)
+    .then((res) => {
+      dispatch({
+        type: RaceActionType.EDIT_RACE,
+        payload: res.data.data,
+      });
+    })
+    .catch((e) => console.error(e))
+    .finally(() =>
+      dispatch({
+        type: RaceActionType.SET_LOADING,
+        payload: false,
+      })
+    );
+  };
+
   return {
     getRaces,
+    addRace,
   };
 };
 

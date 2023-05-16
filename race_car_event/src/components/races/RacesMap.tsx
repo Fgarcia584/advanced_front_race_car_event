@@ -1,13 +1,14 @@
 import { useContext, useEffect } from "react";
 import { RacesContext } from "../../contexts/races/racesContext";
 import useRaces from "../../hooks/useRaces";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import { Icon } from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import useGeocoords from "../../hooks/useGeocoords";
 import SetMapCenter from "./SetMapCenter";
+import RaceCardCore from "./RaceCardCore";
 
 const RacesMap = () => {
   useRaces();
@@ -35,10 +36,12 @@ const RacesMap = () => {
         {state.races.map((race) => (
           <Marker
             id={race.id}
-            position={[race.latitude, race.longitude]}
+            position={[race.longitude, race.latitude]}
             icon={customIcon}
           >
-            <Popup id={race.id}>{race.name}</Popup>
+            <Popup id={race.id}>
+              <RaceCardCore key={race.id} race={race} />
+            </Popup>
           </Marker>
         ))}
       </MarkerClusterGroup>

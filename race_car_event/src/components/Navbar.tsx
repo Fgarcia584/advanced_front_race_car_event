@@ -1,19 +1,27 @@
 import { useContext } from "react";
-import { UserContext } from "../contexts/auth/authContext";
+import { UserContext, defaultUserContext } from "../contexts/auth/authContext";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const user = useContext(UserContext);
-  const isLogged = user.user.username !== "";
+  const {user, setUser }= useContext(UserContext);
+  const isLogged = user.username !== "";
+
+
+  const Logout = () => {
+    setUser(defaultUserContext.user)
+  }
+      
+
   if (isLogged) {
     return (
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <Link to="/login" className="btn btn-ghost normal-case text-xl">
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
             Race Event
           </Link>
         </div>
         <div className="flex-none">
+          <Link to="/races/create" className="btn btn-ghost btn-circle text-3xl text-bold"> + </Link>
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -26,13 +34,13 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">Bonjour {user.user.username}</a>
+                <a className="justify-between">Bonjour {user.username}</a>
               </li>
               <li>
                 <a>Profile</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={Logout}>Logout</a>
               </li>
             </ul>
           </div>
@@ -44,7 +52,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/races/create" className="btn btn-ghost normal-case text-xl">
           Race Event
         </Link>
       </div>

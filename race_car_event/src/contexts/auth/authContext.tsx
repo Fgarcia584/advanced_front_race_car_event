@@ -16,8 +16,9 @@ export interface UserContextInterface {
   setUser: Dispatch<SetStateAction<User>>;
 }
 
-const defaultUserContext = {
+export const defaultUserContext = {
   user: {
+    id: undefined,
     username: "",
     email: "",
   },
@@ -28,6 +29,7 @@ export const UserContext = createContext(defaultUserContext);
 
 export default function UserProvider({ children }: UserProviderType) {
   const [user, setUser] = useState<User>({
+    id: undefined,
     username: "",
     email: "",
   });

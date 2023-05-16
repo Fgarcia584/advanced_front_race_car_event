@@ -12,7 +12,7 @@ let saveToken = (token: string ) => {
     if (token) {
         window.localStorage['jwtToken'] = token;
     } else {
-        window.localStorage.removeItem('jwtToken');
+        window.localStorage.setItem('jwtToken', token);
     }
 };
 
