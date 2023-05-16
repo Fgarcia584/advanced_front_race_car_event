@@ -59,7 +59,6 @@ function RaceForm() {
     const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
 
         event.preventDefault();
-        console.log(credentials);
         raceServices.createRace({
             name: credentials.name,
             description: credentials.description,
@@ -70,7 +69,6 @@ function RaceForm() {
         })
         .then(
             res => {
-                console.log(res);
                 navigate('/races')
             }
         )

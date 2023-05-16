@@ -37,7 +37,6 @@ const useRaces = () => {
     await raceServices
       .createRace(credentials)
       .then((res) => {
-        console.log(res.data.data)
         dispatch({
           type : RaceActionType.ADD_RACE,
           payload : res.data.data

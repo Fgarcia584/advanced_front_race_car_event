@@ -40,16 +40,6 @@ const RaceDetail: React.FC<Props> = ({ race }) => {
           </div>
         </div>
 
-        <div className="card-content col-span-4">
-          <MapContainer className="h-full m-10" center ={[race.longitude, race.latitude]} zoom={13} scrollWheelZoom={true}>
-            <TileLayer attribution='&amp;copy <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker
-            id={race.id}
-            position={[race.longitude, race.latitude]}
-            icon={customIcon}
-          ></Marker>
-          </MapContainer>
-        </div>
       </div>
     </div>
   );
